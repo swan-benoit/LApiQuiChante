@@ -1,5 +1,5 @@
 #[cfg(test)]
-mod tests {
+mod intervals_tests {
     use crate::intervals::intervals::{Interval, IntervalType, Quality};
 
     #[test]
