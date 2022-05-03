@@ -1,10 +1,6 @@
 #[cfg(test)]
 mod notes_test {
-    use std::collections::hash_map::Keys;
-    use std::collections::HashMap;
-
     use crate::notes::notes::{Alteration, get_notes_from_score, Key, Note};
-    use crate::notes::notes::Alteration::Natural;
 
     #[test]
     fn get_score() {

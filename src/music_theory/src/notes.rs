@@ -1,6 +1,5 @@
 pub mod notes {
     use std::collections::HashMap;
-    use std::iter::Map;
 
     #[derive(Eq, PartialEq, Hash, Debug)]
     pub struct Note {
