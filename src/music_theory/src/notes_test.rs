@@ -1,5 +1,6 @@
 #[cfg(test)]
 mod notes_test {
+    use crate::intervals::intervals::{Interval, IntervalType, Quality};
     use crate::notes::notes::{Alteration, get_notes_from_score, Key, Note};
 
     #[test]
@@ -19,5 +20,21 @@ mod notes_test {
         assert_eq!(get_notes_from_score(29).get(&Alteration::Natural).unwrap().key, Key::F);
         assert_eq!(get_notes_from_score(28).get(&Alteration::Natural).unwrap().key, Key::E);
         assert_eq!(get_notes_from_score(28).get(&Alteration::Flat).unwrap().key, Key::F);
+    }
+
+    #[test]
+    fn test_get_note_for_interval() {
+        let lower_note = Note { key: Key::C, alteration: Alteration::Natural, octave: 1 };
+        let upper_note = lower_note.to(Interval { quality: Quality::Minor, interval_type: IntervalType::Sixth });
+        assert_eq!(upper_note.get(&Alteration::Flat).unwrap().key, Key::A);
+        assert_eq!(upper_note.get(&Alteration::Sharp).unwrap().key, Key::G);
+
+        let upper_note = lower_note.to(Interval { quality: Quality::Augmented, interval_type: IntervalType::Fifth });
+        assert_eq!(upper_note.get(&Alteration::Sharp).unwrap().key, Key::G);
+        assert_eq!(upper_note.get(&Alteration::Flat).unwrap().key, Key::A);
+
+        let upper_note = lower_note.to(Interval { quality: Quality::Perfect, interval_type: IntervalType::Fifth });
+        assert_eq!(upper_note.get(&Alteration::Natural).unwrap().key, Key::G);
+        assert_eq!(upper_note.get(&Alteration::Flat).is_none(), true);
     }
 }

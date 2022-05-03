@@ -1,12 +1,20 @@
 pub mod notes {
     use std::collections::HashMap;
 
-    #[derive(Eq, PartialEq, Hash, Debug)]
+    use crate::intervals::intervals::Interval;
+
+    #[derive(Eq, PartialEq, Hash, Debug, Clone)]
     pub struct Note {
         pub(crate) key: Key,
         pub(crate) alteration: Alteration,
         pub(crate) octave: i32,
 
+    }
+
+    impl Note {
+        pub(crate) fn to(&self, interval: Interval) -> HashMap<Alteration, Note> {
+            get_notes_from_score(self.get_score() + interval.get_distance())
+        }
     }
 
     impl Note {
@@ -87,7 +95,7 @@ pub mod notes {
         DoubleFlat,
     }
 
-    #[derive(Eq, PartialEq, Hash, Debug)]
+    #[derive(Eq, PartialEq, Hash, Debug, Clone, Copy)]
     pub enum Key {
         C,
         D,
