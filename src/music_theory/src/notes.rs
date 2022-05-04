@@ -1,7 +1,6 @@
 pub mod notes {
     use std::collections::HashSet;
     use std::hash::Hash;
-    use std::iter::Cycle;
 
     use crate::intervals::intervals::Interval;
 
