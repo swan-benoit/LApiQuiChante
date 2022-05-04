@@ -1,9 +1,10 @@
 pub mod notes {
-    use std::collections::HashMap;
+    use std::collections::HashSet;
+    use std::hash::Hash;
 
     use crate::intervals::intervals::Interval;
 
-    #[derive(Eq, PartialEq, Hash, Debug, Clone)]
+    #[derive(Eq, PartialEq, Hash, Debug, Copy, Clone)]
     pub struct Note {
         pub(crate) key: Key,
         pub(crate) alteration: Alteration,
@@ -12,7 +13,7 @@ pub mod notes {
     }
 
     impl Note {
-        pub(crate) fn to(&self, interval: Interval) -> HashMap<Alteration, Note> {
+        pub(crate) fn to(&self, interval: Interval) -> PossibleNotes {
             get_notes_from_score(self.get_score() + interval.get_distance())
         }
     }
@@ -41,7 +42,7 @@ pub mod notes {
         }
     }
 
-    pub fn get_notes_from_score(score: i32) -> HashMap<Alteration, Note> {
+    pub fn get_notes_from_score(score: i32) -> PossibleNotes {
         let octave = score / 12;
         let note_position = score % 12;
 
@@ -75,16 +76,38 @@ pub mod notes {
             octave,
         });
 
-        HashMap::from([
-            (Alteration::Natural, natural_note),
-            (Alteration::DoubleSharp, double_sharp_note),
-            (Alteration::Sharp, sharp_note),
-            (Alteration::Flat, flat_note),
-            (Alteration::DoubleFlat, double_flat_note),
-        ]).into_iter().filter(|(_, note)| note.is_ok())
-            .map(|x| (x.0, x.1.unwrap()))
-            .collect()
+        let all_notes = HashSet::from([
+            natural_note,
+            double_sharp_note,
+            sharp_note,
+            flat_note,
+            double_flat_note,
+        ]);
+
+        PossibleNotes {
+            notes: all_notes
+                .iter()
+                .filter(|note| note.is_ok())
+                .map(|note| (note.unwrap()))
+                .collect()
+        }
     }
+
+    #[derive(Eq, PartialEq, Hash, Debug)]
+    pub struct PossibleNotes {
+        notes: Vec<Note>,
+    }
+
+    impl PossibleNotes {
+        pub fn get(&self, target: Key) -> Option<Note> {
+            self.notes
+                .iter()
+                .filter(|note| note.key == target)
+                .map(|note| note.clone())
+                .last()
+        }
+    }
+
 
     #[derive(Eq, PartialEq, Hash, Debug, Copy, Clone)]
     pub enum Alteration {
@@ -95,6 +118,7 @@ pub mod notes {
         DoubleFlat,
     }
 
+    // TODO Implement Iter from pour representer les degrees
     #[derive(Eq, PartialEq, Hash, Debug, Clone, Copy)]
     pub enum Key {
         C,
