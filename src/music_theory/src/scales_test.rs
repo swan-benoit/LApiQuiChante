@@ -4,7 +4,7 @@ mod scales_test {
 
     use crate::notes::notes::{Alteration, Key, Note};
     use crate::notes::notes::Alteration::{DoubleFlat, Flat, Natural, Sharp};
-    use crate::notes::notes::Key::{A, B, E, F, G};
+    use crate::notes::notes::Key::{A, B, D, E, F, G};
     use crate::scales::scales::{Scale, ScaleType};
 
     #[test]
@@ -17,12 +17,15 @@ mod scales_test {
                 octave: 0,
             },
         };
-        let c_major_scale_notes = scale.get_notes();
-        assert_eq!(c_major_scale_notes[0].key, G);
-        assert_eq!(c_major_scale_notes[0].alteration, Natural);
-        assert_eq!(c_major_scale_notes[1].key, A);
-        assert_eq!(c_major_scale_notes[1].alteration, Natural);
-        assert_eq!(c_major_scale_notes[6].key, F);
-        assert_eq!(c_major_scale_notes[6].alteration, Sharp);
+        assert_eq!(scale.get_notes(), Vec::from([
+            Note { key: G, alteration: Natural, octave: 0 },
+            Note { key: A, alteration: Natural, octave: 0 },
+            Note { key: B, alteration: Natural, octave: 0 },
+            Note { key: C, alteration: Natural, octave: 1 },
+            Note { key: D, alteration: Natural, octave: 1 },
+            Note { key: E, alteration: Natural, octave: 1 },
+            Note { key: F, alteration: Sharp, octave: 1 },
+            Note { key: G, alteration: Natural, octave: 1 }
+        ]));
     }
 }
