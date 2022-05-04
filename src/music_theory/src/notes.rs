@@ -1,6 +1,7 @@
 pub mod notes {
     use std::collections::HashSet;
     use std::hash::Hash;
+    use std::iter::Cycle;
 
     use crate::intervals::intervals::Interval;
 
@@ -118,7 +119,6 @@ pub mod notes {
         DoubleFlat,
     }
 
-    // TODO Implement Iter from pour representer les degrees
     #[derive(Eq, PartialEq, Hash, Debug, Clone, Copy)]
     pub enum Key {
         C,
@@ -128,6 +128,22 @@ pub mod notes {
         G,
         A,
         B,
+    }
+
+    impl Iterator for Key {
+        type Item = Key;
+
+        fn next(&mut self) -> Option<Self::Item> {
+            match self {
+                Key::C => Option::Some(Key::D),
+                Key::D => Option::Some(Key::E),
+                Key::E => Option::Some(Key::F),
+                Key::F => Option::Some(Key::G),
+                Key::G => Option::Some(Key::A),
+                Key::A => Option::Some(Key::B),
+                Key::B => Option::Some(Key::C)
+            }
+        }
     }
 
     fn get_key(posistion: i32) -> Result<Key, &'static str> {

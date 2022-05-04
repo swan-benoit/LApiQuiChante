@@ -1,9 +1,11 @@
 pub mod intervals {
+    #[derive(Eq, PartialEq, Hash, Copy, Clone)]
     pub struct Interval {
         pub(crate) quality: Quality,
         pub(crate) interval_type: IntervalType,
     }
 
+    #[derive(Eq, PartialEq, Hash, Copy, Clone)]
     pub enum IntervalType {
         Unisson,
         Second,
@@ -14,6 +16,7 @@ pub mod intervals {
         Seventh,
     }
 
+    #[derive(Eq, PartialEq, Hash, Copy, Clone)]
     pub enum Quality {
         Minor,
         Major,
