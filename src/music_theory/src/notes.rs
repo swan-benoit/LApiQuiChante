@@ -6,6 +6,7 @@ pub mod notes {
     use crate::intervals::intervals::Interval;
     use crate::keys::keys::{get_key, Key};
 
+    //  TODO Add new fonction fn new() to struct
     #[derive(Eq, PartialEq, Hash, Debug, Copy, Clone)]
     pub struct Note {
         pub(crate) key: Key,
@@ -15,8 +16,12 @@ pub mod notes {
     }
 
     impl Note {
-        pub(crate) fn to(&self, interval: Interval) -> PossibleNotes {
-            get_notes_from_score(self.get_score() + interval.get_distance())
+        pub(crate) fn to(&self, interval: Interval) -> Option<Note> {
+            let i = interval.get_degree_value();
+            let target = self.key.into_iter().nth(i).unwrap();
+            let score = self.get_score() + interval.get_score();
+            get_notes_from_score(score)
+                .get(target)
         }
     }
 
@@ -97,7 +102,7 @@ pub mod notes {
 
     #[derive(Eq, PartialEq, Hash, Debug)]
     pub struct PossibleNotes {
-        notes: Vec<Note>,
+        pub(crate) notes: Vec<Note>,
     }
 
     impl PossibleNotes {

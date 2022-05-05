@@ -32,42 +32,40 @@ mod notes_test {
         assert_eq!(get_notes_from_score(28).get(F).unwrap().key, F);
         assert_eq!(get_notes_from_score(28).get(F).unwrap().alteration, Flat);
         assert_eq!(get_notes_from_score(28).get(C).is_none(), true);
+        assert_eq!(get_notes_from_score(9).get(G).is_some(), true);
     }
 
     #[test]
     fn test_get_note_for_interval() {
         let lower_note = Note { key: Key::C, alteration: Natural, octave: 1 };
         let upper_note = lower_note.to(Interval { quality: Quality::Minor, interval_type: IntervalType::Sixth });
-        assert_eq!(upper_note.get(A).unwrap(), Note {
+        assert_eq!(upper_note.unwrap(), Note {
             key: A,
             alteration: Flat,
-            octave: 1,
-        });
-        assert_eq!(upper_note.get(G).unwrap(), Note {
-            key: G,
-            alteration: Sharp,
             octave: 1,
         });
 
         let upper_note = lower_note.to(Interval { quality: Quality::Augmented, interval_type: IntervalType::Fifth });
-        assert_eq!(upper_note.get(G).unwrap(), Note {
+        assert_eq!(upper_note.unwrap(), Note {
             key: G,
             alteration: Sharp,
             octave: 1,
         });
-        assert_eq!(upper_note.get(A).unwrap(), Note {
-            key: A,
-            alteration: Flat,
-            octave: 1,
-        });
-
 
         let upper_note = lower_note.to(Interval { quality: Quality::Perfect, interval_type: IntervalType::Fifth });
-        assert_eq!(upper_note.get(G).unwrap(), Note {
+        assert_eq!(upper_note.unwrap(), Note {
             key: G,
             alteration: Natural,
             octave: 1,
         });
-        assert_eq!(upper_note.get(E).is_none(), true);
+
+
+        let lower_note = Note { key: Key::D, alteration: Natural, octave: 1 };
+        let upper_note = lower_note.to(Interval { quality: Quality::Minor, interval_type: IntervalType::Third });
+        assert_eq!(upper_note.unwrap(), Note {
+            key: F,
+            alteration: Natural,
+            octave: 1,
+        });
     }
 }

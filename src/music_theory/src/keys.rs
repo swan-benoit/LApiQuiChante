@@ -26,7 +26,7 @@ pub mod keys {
         }
 
         fn nth(&mut self, n: usize) -> Option<Self::Item> {
-            let mut key = Key::C;
+            let mut key = self.clone();
             for i in 1..n + 1 {
                 key = key.next().unwrap();
             }

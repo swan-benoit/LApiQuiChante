@@ -5,7 +5,6 @@ mod chords;
 mod notes_test;
 mod scales;
 mod scales_test;
-mod degrees;
 mod chords_test;
 mod keys;
 mod keys_test;
