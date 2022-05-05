@@ -8,10 +8,10 @@ mod scales_test {
 
     #[test]
     fn test_get_notes_for_major_scale() {
-        let scale = Scale {
-            scale_type: ScaleType::Major,
-            note: Note::new(G, Natural, 0),
-        };
+        let scale = Scale::new(
+            ScaleType::Major,
+            Note::new(G, Natural, 0),
+        );
         assert_eq!(scale.get_notes(), Vec::from([
             Note::new(G, Natural, 0),
             Note::new(A, Natural, 0),

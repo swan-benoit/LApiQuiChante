@@ -11,6 +11,10 @@ pub mod scales {
 
 
     impl Scale {
+        pub fn new(scale_type: ScaleType, note: Note) -> Scale {
+            Scale { scale_type, note }
+        }
+
         pub fn get_notes(&self) -> Vec<Note> {
             let accumulator = Vec::from([self.note]);
 
