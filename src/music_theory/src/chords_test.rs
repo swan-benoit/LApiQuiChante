@@ -12,11 +12,7 @@ mod chords_test {
     #[test]
     fn test_get_formula() {
         let chord = Chord {
-            root: Note {
-                key: Key::C,
-                alteration: Natural,
-                octave: 0,
-            },
+            root: Note::new(C, Natural, 0),
             chord_type: ChordType::Maj7,
         };
 
@@ -31,70 +27,54 @@ mod chords_test {
     #[test]
     fn test_get_notes() {
         let mut chord = Chord {
-            root: Note {
-                key: Key::C,
-                alteration: Natural,
-                octave: 0,
-            },
+            root: Note::new(C, Natural, 0),
             chord_type: ChordType::Maj7,
         };
 
         let mut expected_chord = Vec::from([
-            Note { key: C, alteration: Natural, octave: 0 },
-            Note { key: E, alteration: Natural, octave: 0 },
-            Note { key: G, alteration: Natural, octave: 0 },
-            Note { key: B, alteration: Natural, octave: 0 }
+            Note::new(C, Natural, 0),
+            Note::new(E, Natural, 0),
+            Note::new(G, Natural, 0),
+            Note::new(B, Natural, 0)
         ]);
         assert!(chord.get_notes().iter().all(|item| expected_chord.contains(item)));
 
         chord = Chord {
-            root: Note {
-                key: Key::C,
-                alteration: Natural,
-                octave: 0,
-            },
+            root: Note::new(C, Natural, 0),
             chord_type: ChordType::Min7,
         };
 
         expected_chord = Vec::from([
-            Note { key: C, alteration: Natural, octave: 0 },
-            Note { key: E, alteration: Flat, octave: 0 },
-            Note { key: G, alteration: Natural, octave: 0 },
-            Note { key: B, alteration: Flat, octave: 0 }
+            Note::new(C, Natural, 0),
+            Note::new(E, Flat, 0),
+            Note::new(G, Natural, 0),
+            Note::new(B, Flat, 0)
         ]);
         assert!(chord.get_notes().iter().all(|item| expected_chord.contains(item)));
 
         chord = Chord {
-            root: Note {
-                key: Key::D,
-                alteration: Natural,
-                octave: 0,
-            },
+            root: Note::new(Key::D, Natural, 0),
             chord_type: ChordType::Min7,
         };
 
         expected_chord = Vec::from([
-            Note { key: D, alteration: Natural, octave: 0 },
-            Note { key: F, alteration: Natural, octave: 0 },
-            Note { key: A, alteration: Natural, octave: 0 },
-            Note { key: C, alteration: Natural, octave: 1 }
+            Note::new(D, Natural, 0),
+            Note::new(F, Natural, 0),
+            Note::new(A, Natural, 0),
+            Note::new(C, Natural, 1)
         ]);
         assert!(chord.get_notes().iter().all(|item| expected_chord.contains(item)));
 
         chord = Chord {
-            root: Note {
-                key: Key::B,
-                alteration: Flat,
-                octave: 1,
-            },
+            root: Note::new(Key::B, Flat, 1),
             chord_type: ChordType::Min7,
         };
 
         expected_chord = Vec::from([
-            Note { key: B, alteration: Flat, octave: 1 },
-            Note { key: D, alteration: Flat, octave: 2 },
-            Note { key: F, alteration: Natural, octave: 2 },
-            Note { key: A, alteration: Flat, octave: 2 }
+            Note::new(B, Flat, 1),
+            Note::new(D, Flat, 2),
+            Note::new(F, Natural, 2),
+            Note::new(A, Flat, 2)
         ]);
         assert!(chord.get_notes().iter().all(|item| expected_chord.contains(item)));
 

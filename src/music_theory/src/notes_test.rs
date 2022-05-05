@@ -10,10 +10,10 @@ mod notes_test {
 
     #[test]
     fn get_score() {
-        assert_eq!(Note { key: Key::B, alteration: Natural, octave: 0 }.get_score(), 11);
-        assert_eq!(Note { key: Key::C, alteration: Natural, octave: 1 }.get_score(), 12);
-        assert_eq!(Note { key: Key::E, alteration: Flat, octave: 4 }.get_score(), 4 * 12 + 4 - 1);
-        assert_eq!(Note { key: Key::B, alteration: DoubleSharp, octave: 3 }.get_score(), 3 * 12 + 11 + 2)
+        assert_eq!(Note::new(Key::B, Natural, 0).get_score(), 11);
+        assert_eq!(Note::new(Key::C, Natural, 1).get_score(), 12);
+        assert_eq!(Note::new(Key::E, Flat, 4).get_score(), 4 * 12 + 4 - 1);
+        assert_eq!(Note::new(Key::B, DoubleSharp, 3).get_score(), 3 * 12 + 11 + 2)
     }
 
     #[test]
@@ -37,35 +37,19 @@ mod notes_test {
 
     #[test]
     fn test_get_note_for_interval() {
-        let lower_note = Note { key: Key::C, alteration: Natural, octave: 1 };
+        let lower_note = Note::new(C, Natural, 1);
         let upper_note = lower_note.to(Interval { quality: Quality::Minor, interval_type: IntervalType::Sixth });
-        assert_eq!(upper_note.unwrap(), Note {
-            key: A,
-            alteration: Flat,
-            octave: 1,
-        });
+        assert_eq!(upper_note.unwrap(), Note::new(A, Flat, 1));
 
         let upper_note = lower_note.to(Interval { quality: Quality::Augmented, interval_type: IntervalType::Fifth });
-        assert_eq!(upper_note.unwrap(), Note {
-            key: G,
-            alteration: Sharp,
-            octave: 1,
-        });
+        assert_eq!(upper_note.unwrap(), Note::new(G, Sharp, 1));
 
         let upper_note = lower_note.to(Interval { quality: Quality::Perfect, interval_type: IntervalType::Fifth });
-        assert_eq!(upper_note.unwrap(), Note {
-            key: G,
-            alteration: Natural,
-            octave: 1,
-        });
+        assert_eq!(upper_note.unwrap(), Note::new(G, Natural, 1));
 
 
-        let lower_note = Note { key: Key::D, alteration: Natural, octave: 1 };
+        let lower_note = Note::new(D, Natural, 1);
         let upper_note = lower_note.to(Interval { quality: Quality::Minor, interval_type: IntervalType::Third });
-        assert_eq!(upper_note.unwrap(), Note {
-            key: F,
-            alteration: Natural,
-            octave: 1,
-        });
+        assert_eq!(upper_note.unwrap(), Note::new(F, Natural, 1));
     }
 }

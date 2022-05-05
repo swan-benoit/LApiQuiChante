@@ -10,21 +10,17 @@ mod scales_test {
     fn test_get_notes_for_major_scale() {
         let scale = Scale {
             scale_type: ScaleType::Major,
-            note: Note {
-                key: Key::G,
-                alteration: Alteration::Natural,
-                octave: 0,
-            },
+            note: Note::new(G, Natural, 0),
         };
         assert_eq!(scale.get_notes(), Vec::from([
-            Note { key: G, alteration: Natural, octave: 0 },
-            Note { key: A, alteration: Natural, octave: 0 },
-            Note { key: B, alteration: Natural, octave: 0 },
-            Note { key: C, alteration: Natural, octave: 1 },
-            Note { key: D, alteration: Natural, octave: 1 },
-            Note { key: E, alteration: Natural, octave: 1 },
-            Note { key: F, alteration: Sharp, octave: 1 },
-            Note { key: G, alteration: Natural, octave: 1 }
+            Note::new(G, Natural, 0),
+            Note::new(A, Natural, 0),
+            Note::new(B, Natural, 0),
+            Note::new(C, Natural, 1),
+            Note::new(D, Natural, 1),
+            Note::new(E, Natural, 1),
+            Note::new(F, Sharp, 1),
+            Note::new(G, Natural, 1)
         ]));
     }
 }

@@ -23,6 +23,10 @@ pub mod notes {
             get_notes_from_score(score)
                 .get(target)
         }
+
+        pub(crate) fn new(key: Key, alteration: Alteration, octave: i32) -> Note {
+            Note { key, alteration, octave }
+        }
     }
 
     impl Note {
@@ -53,35 +57,15 @@ pub mod notes {
         let octave = score / 12;
         let note_position = score % 12;
 
-        let natural_note = get_key(note_position).map(|key| Note {
-            key,
-            alteration: Alteration::Natural,
-            octave,
-        });
+        let natural_note = get_key(note_position).map(|key| Note::new(key, Alteration::Natural, octave));
 
-        let sharp_note = get_key(note_position - 1).map(|key| Note {
-            key,
-            alteration: Alteration::Sharp,
-            octave,
-        });
+        let sharp_note = get_key(note_position - 1).map(|key| Note::new(key, Alteration::Sharp, octave));
 
-        let double_sharp_note = get_key(note_position - 2).map(|key| Note {
-            key,
-            alteration: Alteration::DoubleSharp,
-            octave,
-        });
+        let double_sharp_note = get_key(note_position - 2).map(|key| Note::new(key, Alteration::DoubleSharp, octave));
 
-        let flat_note = get_key(note_position + 1).map(|key| Note {
-            key,
-            alteration: Alteration::Flat,
-            octave,
-        });
+        let flat_note = get_key(note_position + 1).map(|key| Note::new(key, Alteration::Flat, octave));
 
-        let double_flat_note = get_key(note_position + 2).map(|key| Note {
-            key,
-            alteration: Alteration::DoubleFlat,
-            octave,
-        });
+        let double_flat_note = get_key(note_position + 2).map(|key| Note::new(key, Alteration::DoubleFlat, octave));
 
         let all_notes = HashSet::from([
             natural_note,
