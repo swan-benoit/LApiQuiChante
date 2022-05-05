@@ -1,12 +1,12 @@
 #[cfg(test)]
 mod notes_test {
     use Alteration::{DoubleSharp, Flat};
-    use Key::{A, D, F};
 
     use crate::intervals::intervals::{Interval, IntervalType, Quality};
-    use crate::notes::notes::{Alteration, get_notes_from_score, Key, Note, PossibleNotes};
+    use crate::keys::keys::Key;
+    use crate::keys::keys::Key::{A, B, C, D, E, F, G};
+    use crate::notes::notes::{Alteration, get_notes_from_score, Note, PossibleNotes};
     use crate::notes::notes::Alteration::{DoubleFlat, Natural, Sharp};
-    use crate::notes::notes::Key::{B, C, E, G};
 
     #[test]
     fn get_score() {
