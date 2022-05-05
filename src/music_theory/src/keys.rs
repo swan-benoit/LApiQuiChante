@@ -25,17 +25,13 @@ pub mod keys {
             }
         }
 
-        // fn advance_by(&mut self, n: usize) -> Result<(), usize> {
-        //     match self {
-        //         Key::C => Result::Some(Key::D),
-        //         Key::D => Result::Some(Key::E),
-        //         Key::E => Result::Some(Key::F),
-        //         Key::F => Result::Some(Key::G),
-        //         Key::G => Result::Some(Key::A),
-        //         Key::A => Result::Some(Key::B),
-        //         Key::B => Result::Some(Key::C)
-        //     }
-        // }
+        fn nth(&mut self, n: usize) -> Option<Self::Item> {
+            let mut key = Key::C;
+            for i in 1..n + 1 {
+                key = key.next().unwrap();
+            }
+            Option::Some(key)
+        }
     }
 
     pub fn get_key(posistion: i32) -> Result<Key, &'static str> {
