@@ -75,13 +75,12 @@ pub mod notes {
             double_flat_note,
         ]);
 
-        PossibleNotes {
-            notes: all_notes
-                .iter()
-                .filter(|note| note.is_ok())
-                .map(|note| (note.unwrap()))
-                .collect()
-        }
+        PossibleNotes::new(all_notes
+            .iter()
+            .filter(|note| note.is_ok())
+            .map(|note| (note.unwrap()))
+            .collect()
+        )
     }
 
     #[derive(Eq, PartialEq, Hash, Debug)]
@@ -90,6 +89,10 @@ pub mod notes {
     }
 
     impl PossibleNotes {
+        pub fn new(notes: Vec<Note>) -> PossibleNotes {
+            PossibleNotes { notes }
+        }
+
         pub fn get(&self, target: Key) -> Option<Note> {
             self.notes
                 .iter()
