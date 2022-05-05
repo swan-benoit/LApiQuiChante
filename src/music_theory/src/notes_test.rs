@@ -4,8 +4,8 @@ mod notes_test {
     use Key::{A, D, F};
 
     use crate::intervals::intervals::{Interval, IntervalType, Quality};
-    use crate::notes::notes::{Alteration, get_notes_from_score, Key, Note};
-    use crate::notes::notes::Alteration::{Natural, Sharp};
+    use crate::notes::notes::{Alteration, get_notes_from_score, Key, Note, PossibleNotes};
+    use crate::notes::notes::Alteration::{DoubleFlat, Natural, Sharp};
     use crate::notes::notes::Key::{B, C, E, G};
 
     #[test]
@@ -38,20 +38,36 @@ mod notes_test {
     fn test_get_note_for_interval() {
         let lower_note = Note { key: Key::C, alteration: Natural, octave: 1 };
         let upper_note = lower_note.to(Interval { quality: Quality::Minor, interval_type: IntervalType::Sixth });
-        assert_eq!(upper_note.get(A).unwrap().key, A);
-        assert_eq!(upper_note.get(A).unwrap().alteration, Flat);
-        assert_eq!(upper_note.get(G).unwrap().key, G);
-        assert_eq!(upper_note.get(G).unwrap().alteration, Sharp);
+        assert_eq!(upper_note.get(A).unwrap(), Note {
+            key: A,
+            alteration: Flat,
+            octave: 1,
+        });
+        assert_eq!(upper_note.get(G).unwrap(), Note {
+            key: G,
+            alteration: Sharp,
+            octave: 1,
+        });
 
         let upper_note = lower_note.to(Interval { quality: Quality::Augmented, interval_type: IntervalType::Fifth });
-        assert_eq!(upper_note.get(G).unwrap().key, G);
-        assert_eq!(upper_note.get(G).unwrap().alteration, Sharp);
-        assert_eq!(upper_note.get(A).unwrap().key, A);
-        assert_eq!(upper_note.get(A).unwrap().alteration, Flat);
+        assert_eq!(upper_note.get(G).unwrap(), Note {
+            key: G,
+            alteration: Sharp,
+            octave: 1,
+        });
+        assert_eq!(upper_note.get(A).unwrap(), Note {
+            key: A,
+            alteration: Flat,
+            octave: 1,
+        });
+
 
         let upper_note = lower_note.to(Interval { quality: Quality::Perfect, interval_type: IntervalType::Fifth });
-        assert_eq!(upper_note.get(G).unwrap().key, G);
-        assert_eq!(upper_note.get(G).unwrap().alteration, Natural);
+        assert_eq!(upper_note.get(G).unwrap(), Note {
+            key: G,
+            alteration: Natural,
+            octave: 1,
+        });
         assert_eq!(upper_note.get(E).is_none(), true);
     }
 }
