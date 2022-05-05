@@ -13,6 +13,10 @@ pub mod chords {
     }
 
     impl Chord {
+        pub fn new(root: Note, chord_type: ChordType) -> Chord {
+            Chord { root, chord_type }
+        }
+
         pub fn get_notes(&self) -> Vec<Note> {
             let accumulator = Vec::from([self.root]);
             self.get_formula().iter()

@@ -12,10 +12,10 @@ mod chords_test {
 
     #[test]
     fn test_get_formula() {
-        let chord = Chord {
-            root: Note::new(C, Natural, 0),
-            chord_type: ChordType::Maj7,
-        };
+        let chord = Chord::new(
+            Note::new(C, Natural, 0),
+            ChordType::Maj7,
+        );
 
 
         assert_eq!(chord.get_formula(), Vec::from([
@@ -27,10 +27,10 @@ mod chords_test {
 
     #[test]
     fn test_get_notes() {
-        let mut chord = Chord {
-            root: Note::new(C, Natural, 0),
-            chord_type: ChordType::Maj7,
-        };
+        let mut chord = Chord::new(
+            Note::new(C, Natural, 0),
+            ChordType::Maj7,
+        );
 
         let mut expected_chord = Vec::from([
             Note::new(C, Natural, 0),
@@ -40,10 +40,10 @@ mod chords_test {
         ]);
         assert!(chord.get_notes().iter().all(|item| expected_chord.contains(item)));
 
-        chord = Chord {
-            root: Note::new(C, Natural, 0),
-            chord_type: ChordType::Min7,
-        };
+        chord = Chord::new(
+            Note::new(C, Natural, 0),
+            ChordType::Min7,
+        );
 
         expected_chord = Vec::from([
             Note::new(C, Natural, 0),
@@ -53,10 +53,10 @@ mod chords_test {
         ]);
         assert!(chord.get_notes().iter().all(|item| expected_chord.contains(item)));
 
-        chord = Chord {
-            root: Note::new(Key::D, Natural, 0),
-            chord_type: ChordType::Min7,
-        };
+        chord = Chord::new(
+            Note::new(Key::D, Natural, 0),
+            ChordType::Min7,
+        );
 
         expected_chord = Vec::from([
             Note::new(D, Natural, 0),
@@ -66,10 +66,10 @@ mod chords_test {
         ]);
         assert!(chord.get_notes().iter().all(|item| expected_chord.contains(item)));
 
-        chord = Chord {
-            root: Note::new(Key::B, Flat, 1),
-            chord_type: ChordType::Min7,
-        };
+        chord = Chord::new(
+            Note::new(Key::B, Flat, 1),
+            ChordType::Min7,
+        );
 
         expected_chord = Vec::from([
             Note::new(B, Flat, 1),
