@@ -1,6 +1,7 @@
 pub mod chords {
     use std::collections::hash_map;
 
+    use crate::chords::chords::ChordType::{Maj, Min};
     use crate::intervals::intervals::Interval;
     use crate::intervals::intervals::IntervalType::{Fifth, Seventh, Third};
     use crate::intervals::intervals::Quality::{Major, Minor, Perfect};
@@ -25,11 +26,11 @@ pub mod chords {
         }
 
         pub fn get_formula(&self) -> Vec<Interval> {
-            let p5 = Interval { quality: Perfect, interval_type: Fifth };
-            let maj3 = Interval { quality: Major, interval_type: Third };
-            let m3 = Interval { quality: Minor, interval_type: Third };
-            let maj7 = Interval { quality: Major, interval_type: Seventh };
-            let m7 = Interval { quality: Minor, interval_type: Seventh };
+            let p5 = Interval::new(Fifth, Perfect);
+            let maj3 = Interval::new(Third, Major);
+            let m3 = Interval::new(Third, Minor);
+            let maj7 = Interval::new(Seventh, Major);
+            let m7 = Interval::new(Seventh, Minor);
 
             match self.chord_type {
                 ChordType::Min7 => Vec::from([m3, p5, m7]),

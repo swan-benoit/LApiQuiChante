@@ -1,5 +1,7 @@
 pub mod scales {
     use crate::intervals::intervals::{Interval, IntervalType, Quality};
+    use crate::intervals::intervals::IntervalType::Second;
+    use crate::intervals::intervals::Quality::{Major, Minor};
     use crate::notes::notes::Note;
 
     pub struct Scale {
@@ -25,14 +27,8 @@ pub mod scales {
         }
 
         pub fn get_steps(&self) -> Vec<Interval> {
-            let m2 = Interval {
-                quality: Quality::Minor,
-                interval_type: IntervalType::Second,
-            };
-            let maj2 = Interval {
-                quality: Quality::Major,
-                interval_type: IntervalType::Second,
-            };
+            let m2 = Interval::new(Second, Minor);
+            let maj2 = Interval::new(Second, Major);
             match self.scale_type {
                 ScaleType::Major => Vec::from([maj2, maj2, m2, maj2, maj2, maj2, m2]),
                 ScaleType::MinorHarmonic => Vec::from([maj2, m2, maj2, maj2, m2, maj2, maj2]),

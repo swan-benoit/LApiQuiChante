@@ -1,6 +1,7 @@
 #[cfg(test)]
 mod chords_test {
     use crate::chords::chords::{Chord, ChordType};
+    use crate::chords::chords::ChordType::Maj;
     use crate::intervals::intervals::Interval;
     use crate::intervals::intervals::IntervalType::{Fifth, Seventh, Third};
     use crate::intervals::intervals::Quality::{Major, Perfect};
@@ -18,9 +19,9 @@ mod chords_test {
 
 
         assert_eq!(chord.get_formula(), Vec::from([
-            Interval { quality: Major, interval_type: Third },
-            Interval { quality: Perfect, interval_type: Fifth },
-            Interval { quality: Major, interval_type: Seventh }
+            Interval::new(Third, Major),
+            Interval::new(Fifth, Perfect),
+            Interval::new(Seventh, Major)
         ]))
     }
 

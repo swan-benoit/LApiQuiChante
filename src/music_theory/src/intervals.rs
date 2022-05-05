@@ -26,6 +26,10 @@ pub mod intervals {
     }
 
     impl Interval {
+        pub fn new(interval_type: IntervalType, quality: Quality) -> Interval {
+            Interval { quality, interval_type }
+        }
+
         pub fn get_score(&self) -> i32 {
             let interval = match self.interval_type {
                 IntervalType::Unisson => 0,
