@@ -1,13 +1,9 @@
 #[cfg(test)]
 mod notes_test {
-    use crate::chords::chords::ChordType::Min;
-    use crate::intervals::intervals::{Interval, IntervalType, Quality};
-    use crate::intervals::intervals::IntervalType::{Fifth, Sixth};
-    use crate::intervals::intervals::Quality::{Augmented, Minor, Perfect};
-    use crate::keys::keys::{get_key, Key};
+    use crate::keys::keys::Key;
     use crate::keys::keys::Key::{A, B, C, D, E, F, G};
-    use crate::notes::notes::{Alteration, get_notes_from_score, Note, PossibleNotes};
-    use crate::notes::notes::Alteration::{DoubleFlat, DoubleSharp, Flat, Natural, Sharp};
+    use crate::notes::notes::{get_notes_from_score, Note};
+    use crate::notes::notes::Alteration::{DoubleSharp, Flat, Natural};
 
     #[test]
     fn get_score() {

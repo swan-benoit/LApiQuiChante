@@ -1,9 +1,8 @@
 #[cfg(test)]
 mod scales_test {
-    use crate::keys::keys::Key;
     use crate::keys::keys::Key::{A, B, C, D, E, F, G};
-    use crate::notes::notes::{Alteration, Note};
-    use crate::notes::notes::Alteration::{DoubleFlat, Flat, Natural, Sharp};
+    use crate::notes::notes::Note;
+    use crate::notes::notes::Alteration::{Flat, Natural, Sharp};
     use crate::scales::scales::{Scale, ScaleType};
 
     #[test]

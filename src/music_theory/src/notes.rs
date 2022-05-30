@@ -1,5 +1,4 @@
 pub mod notes {
-    use std::cmp::Ordering;
     use std::collections::HashSet;
     use std::hash::Hash;
 

@@ -1,5 +1,5 @@
 pub mod scales {
-    use crate::intervals::intervals::{Interval, IntervalType, Quality};
+    use crate::intervals::intervals::Interval;
     use crate::intervals::intervals::IntervalType::Second;
     use crate::intervals::intervals::Quality::{Major, Minor};
     use crate::notes::notes::Note;

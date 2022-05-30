@@ -1,13 +1,12 @@
 #[cfg(test)]
 mod chords_test {
     use crate::chords::chords::{Chord, ChordType};
-    use crate::chords::chords::ChordType::Maj;
     use crate::intervals::intervals::Interval;
     use crate::intervals::intervals::IntervalType::{Fifth, Seventh, Third};
     use crate::intervals::intervals::Quality::{Major, Perfect};
     use crate::keys::keys::Key;
     use crate::keys::keys::Key::{A, B, C, D, E, F, G};
-    use crate::notes::notes::Alteration::{DoubleFlat, DoubleSharp, Flat, Natural, Sharp};
+    use crate::notes::notes::Alteration::{DoubleFlat, Flat, Natural};
     use crate::notes::notes::Note;
 
     #[test]

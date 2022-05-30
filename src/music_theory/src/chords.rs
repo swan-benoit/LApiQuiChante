@@ -1,7 +1,4 @@
 pub mod chords {
-    use std::collections::hash_map;
-
-    use crate::chords::chords::ChordType::{Maj, Min};
     use crate::intervals::intervals::Interval;
     use crate::intervals::intervals::IntervalType::{Fifth, Seventh, Third};
     use crate::intervals::intervals::Quality::{Major, Minor, Perfect};
