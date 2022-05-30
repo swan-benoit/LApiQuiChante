@@ -28,7 +28,7 @@ pub mod keys {
         fn nth(&mut self, n: usize) -> Option<Self::Item> {
             (1..=n).fold(
                 Some(self.clone()),
-                |mut key, _| { key.unwrap().next() },
+                |key, _| { key.unwrap().next() },
             )
         }
     }
