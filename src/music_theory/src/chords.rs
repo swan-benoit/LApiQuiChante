@@ -2,7 +2,7 @@ pub mod chords {
     use crate::intervals::intervals::Interval;
     use crate::intervals::intervals::IntervalType::{Fifth, Seventh, Third};
     use crate::intervals::intervals::Quality::{Major, Minor, Perfect};
-    use crate::notes::notes::Note;
+    use crate::notes::notes::{Alteration, Note};
 
     pub struct Chord {
         pub(crate) root: Note,
@@ -10,8 +10,14 @@ pub mod chords {
     }
 
     impl Chord {
-        pub fn new(root: Note, chord_type: ChordType) -> Chord {
-            Chord { root, chord_type }
+        pub fn new(root: Note, chord_type: ChordType) -> Option<Chord> {
+            match root.alteration {
+                Alteration::DoubleSharp
+                | Alteration::DoubleFlat => None,
+                Alteration::Sharp
+                | Alteration::Natural
+                | Alteration::Flat => Some(Chord { root, chord_type })
+            }
         }
 
         pub fn get_notes(&self) -> Vec<Note> {
