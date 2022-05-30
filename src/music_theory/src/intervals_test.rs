@@ -11,5 +11,7 @@ mod intervals_tests {
         assert_eq!(Interval::new(IntervalType::Sixth, Quality::Augmented).get_score(), 10);
         assert_eq!(Interval::new(IntervalType::Seventh, Quality::Minor).get_score(), 10);
         assert_eq!(Interval::new(IntervalType::Seventh, Quality::Minor).get_score(), 10);
+        assert_eq!(Interval::new(IntervalType::Fourth, Quality::Diminished).get_score(), 3);
+        assert_eq!(Interval::new(IntervalType::Unisson, Quality::Perfect).get_score(), 0);
     }
 }
