@@ -6,7 +6,6 @@ pub mod notes {
     use crate::intervals::intervals::Interval;
     use crate::keys::keys::{get_key, Key};
 
-    //  TODO Add new fonction fn new() to struct
     #[derive(Eq, PartialEq, Hash, Debug, Copy, Clone)]
     pub struct Note {
         pub(crate) key: Key,
@@ -54,18 +53,11 @@ pub mod notes {
     }
 
     pub fn get_notes_from_score(score: i32) -> PossibleNotes {
-        let octave = score / 12;
-        let note_position = score % 12;
-
-        let natural_note = get_key(note_position).map(|key| Note::new(key, Alteration::Natural, octave));
-
-        let sharp_note = get_key(note_position - 1).map(|key| Note::new(key, Alteration::Sharp, octave));
-
-        let double_sharp_note = get_key(note_position - 2).map(|key| Note::new(key, Alteration::DoubleSharp, octave));
-
-        let flat_note = get_key(note_position + 1).map(|key| Note::new(key, Alteration::Flat, octave));
-
-        let double_flat_note = get_key(note_position + 2).map(|key| Note::new(key, Alteration::DoubleFlat, octave));
+        let natural_note = get_note(score, Alteration::Natural);
+        let sharp_note = get_note(score - 1, Alteration::Sharp);
+        let double_sharp_note = get_note(score - 2, Alteration::DoubleSharp);
+        let flat_note = get_note(score + 1, Alteration::Flat);
+        let double_flat_note = get_note(score + 2, Alteration::DoubleFlat);
 
         let all_notes = HashSet::from([
             natural_note,
@@ -82,6 +74,15 @@ pub mod notes {
             .collect()
         )
     }
+
+    fn get_note(score: i32, alteration: Alteration) -> Result<Note, &'static str> {
+        let octave = score / 12;
+        let note_position = score % 12;
+
+        get_key(note_position)
+            .map(|key| Note::new(key, alteration, octave))
+    }
+
 
     #[derive(Eq, PartialEq, Hash, Debug)]
     pub struct PossibleNotes {

@@ -79,23 +79,22 @@ mod chords_test {
         ]);
         assert!(chord.get_notes().iter().all(|item| expected_chord.contains(item)));
 
-        // TODO ce cas ne passe pas
-        //     let chord = Chord {
-        //         root: Note {
-        //             key: Key::F,
-        //             alteration: Flat,
-        //             octave: 1
-        //         },
-        //         chord_type: ChordType::Min7
-        //     };
-        //
-        //     let expected_chord = Vec::from([
-        //         Note { key: F, alteration: Flat, octave: 1 },
-        //         Note { key: A, alteration: DoubleFlat, octave: 1 },
-        //         Note { key: C, alteration: Flat, octave: 2 },
-        //         Note { key: E, alteration: DoubleFlat, octave: 2 }
-        //     ]);
-        //     assert_eq!(chord.get_notes(), expected_chord);
-        //     assert!(chord.get_notes().iter().all(|item| expected_chord.contains(item)));
+        let chord = Chord {
+            root: Note {
+                key: Key::F,
+                alteration: Flat,
+                octave: 1,
+            },
+            chord_type: ChordType::Min7,
+        };
+
+        let expected_chord = Vec::from([
+            Note { key: F, alteration: Flat, octave: 1 },
+            Note { key: A, alteration: DoubleFlat, octave: 1 },
+            Note { key: C, alteration: Flat, octave: 2 },
+            Note { key: E, alteration: DoubleFlat, octave: 2 }
+        ]);
+        assert_eq!(chord.get_notes(), expected_chord);
+        assert!(chord.get_notes().iter().all(|item| expected_chord.contains(item)));
     }
 }
