@@ -1,6 +1,6 @@
 pub mod scales {
     use crate::intervals::intervals::Interval;
-    use crate::intervals::intervals::IntervalType::Second;
+    use crate::intervals::intervals::IntervalType::{Second, Third};
     use crate::intervals::intervals::Quality::{Augmented, Major, Minor};
     use crate::notes::notes::Note;
 
@@ -34,10 +34,13 @@ pub mod scales {
             let m2 = Interval::new(Second, Minor);
             let maj2 = Interval::new(Second, Major);
             let aug2 = Interval::new(Second, Augmented);
+            let m3 = Interval::new(Third, Minor);
+
             match self.scale_type {
                 ScaleType::Major => Vec::from([maj2, maj2, m2, maj2, maj2, maj2, m2]),
                 ScaleType::HarmonicMinor => Vec::from([maj2, m2, maj2, maj2, m2, aug2, m2]),
-                ScaleType::NaturalMinor => Vec::from([maj2, m2, maj2, maj2, m2, maj2, maj2])
+                ScaleType::NaturalMinor => Vec::from([maj2, m2, maj2, maj2, m2, maj2, maj2]),
+                ScaleType::MinorPentatonic => Vec::from([m3, maj2, maj2, m3, maj2])
             }
         }
     }
@@ -46,5 +49,6 @@ pub mod scales {
         Major,
         HarmonicMinor,
         NaturalMinor,
+        MinorPentatonic
     }
 }

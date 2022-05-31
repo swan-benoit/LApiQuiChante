@@ -150,4 +150,46 @@ mod scales_test {
             Note::new(D, Flat, 2),
         ]));
     }
+
+    #[test]
+    fn test_get_notes_for_pentatonic_minor_scale() {
+        let mut scale = Scale::new(
+            ScaleType::MinorPentatonic,
+            Note::new(C, Natural, 0),
+        );
+        assert_eq!(scale.get_notes(), Vec::from([
+            Note::new(C, Natural, 0),
+            Note::new(E, Flat, 0),
+            Note::new(F, Natural, 0),
+            Note::new(G, Natural, 0),
+            Note::new(B, Flat, 0),
+            Note::new(C, Natural, 1),
+        ]));
+
+        scale = Scale::new(
+            ScaleType::MinorPentatonic,
+            Note::new(G, Sharp, 0),
+        );
+        assert_eq!(scale.get_notes(), Vec::from([
+            Note::new(G, Sharp, 0),
+            Note::new(B, Natural, 0),
+            Note::new(C, Sharp, 1),
+            Note::new(D, Sharp, 1),
+            Note::new(F, Sharp, 1),
+            Note::new(G, Sharp, 1),
+        ]));
+
+        scale = Scale::new(
+            ScaleType::MinorPentatonic,
+            Note::new(E, Flat, 0),
+        );
+        assert_eq!(scale.get_notes(), Vec::from([
+            Note::new(E, Flat, 0),
+            Note::new(G, Flat, 0),
+            Note::new(A, Flat, 0),
+            Note::new(B, Flat, 0),
+            Note::new(D, Flat, 1),
+            Note::new(E, Flat, 1),
+        ]));
+    }
 }
