@@ -14,17 +14,18 @@ pub mod chords {
             match root.alteration {
                 Alteration::DoubleSharp
                 | Alteration::DoubleFlat => None,
-                Alteration::Sharp
-                | Alteration::Natural
-                | Alteration::Flat => Some(Chord { root, chord_type })
+                _ => Some(Chord { root, chord_type })
             }
         }
 
         pub fn get_notes(&self) -> Vec<Note> {
             let accumulator = Vec::from([self.root]);
+
             self.get_formula().iter()
                 .fold(accumulator, |mut accumulator, interval| {
                     let next_note = self.root.to(*interval);
+
+                    // TODO refactor me
                     if next_note.is_some() {
                         accumulator.push(next_note.unwrap());
                     }

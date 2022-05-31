@@ -23,6 +23,7 @@ pub mod scales {
                 .fold(accumulator, |mut vec, interval| {
                     let current_note = vec.last().unwrap();
                     let next_note = current_note.to(*interval);
+                    // TODO refactor me
                     if next_note.is_some() {
                         vec.push(next_note.unwrap());
                     }
