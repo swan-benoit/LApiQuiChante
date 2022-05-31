@@ -1,8 +1,8 @@
 #[cfg(test)]
 mod scales_test {
     use crate::keys::keys::Key::{A, B, C, D, E, F, G};
+    use crate::notes::notes::Alteration::{DoubleFlat, DoubleSharp, Flat, Natural, Sharp};
     use crate::notes::notes::Note;
-    use crate::notes::notes::Alteration::{Flat, Natural, Sharp};
     use crate::scales::scales::{Scale, ScaleType};
 
     #[test]
@@ -51,6 +51,103 @@ mod scales_test {
             Note::new(B, Flat, 0),
             Note::new(C, Natural, 1),
             Note::new(D, Flat, 1),
+        ]));
+    }
+
+    #[test]
+    fn test_get_notes_for_minor_harmonic_scale() {
+        let mut scale = Scale::new(
+            ScaleType::HarmonicMinor,
+            Note::new(G, Natural, 0),
+        );
+        assert_eq!(scale.get_notes(), Vec::from([
+            Note::new(G, Natural, 0),
+            Note::new(A, Natural, 0),
+            Note::new(B, Flat, 0),
+            Note::new(C, Natural, 1),
+            Note::new(D, Natural, 1),
+            Note::new(E, Flat, 1),
+            Note::new(F, Sharp, 1),
+            Note::new(G, Natural, 1)
+        ]));
+
+        scale = Scale::new(
+            ScaleType::HarmonicMinor,
+            Note::new(D, Sharp, 0),
+        );
+        assert_eq!(scale.get_notes(), Vec::from([
+            Note::new(D, Sharp, 0),
+            Note::new(E, Sharp, 0),
+            Note::new(F, Sharp, 0),
+            Note::new(G, Sharp, 0),
+            Note::new(A, Sharp, 0),
+            Note::new(B, Natural, 0),
+            Note::new(C, DoubleSharp, 1),
+            Note::new(D, Sharp, 1),
+        ]));
+
+
+        scale = Scale::new(
+            ScaleType::HarmonicMinor,
+            Note::new(B, Flat, 0),
+        );
+        assert_eq!(scale.get_notes(), Vec::from([
+            Note::new(B, Flat, 0),
+            Note::new(C, Natural, 1),
+            Note::new(D, Flat, 1),
+            Note::new(E, Flat, 1),
+            Note::new(F, Natural, 1),
+            Note::new(G, Flat, 1),
+            Note::new(A, Natural, 1),
+            Note::new(B, Flat, 1),
+        ]));
+    }
+
+    #[test]
+    fn test_get_notes_for_natural_minor_scale() {
+        let mut scale = Scale::new(
+            ScaleType::NaturalMinor,
+            Note::new(A, Natural, 0),
+        );
+        assert_eq!(scale.get_notes(), Vec::from([
+            Note::new(A, Natural, 0),
+            Note::new(B, Natural, 0),
+            Note::new(C, Natural, 1),
+            Note::new(D, Natural, 1),
+            Note::new(E, Natural, 1),
+            Note::new(F, Natural, 1),
+            Note::new(G, Natural, 1),
+            Note::new(A, Natural, 1),
+        ]));
+
+        scale = Scale::new(
+            ScaleType::NaturalMinor,
+            Note::new(F, Sharp, 0),
+        );
+        assert_eq!(scale.get_notes(), Vec::from([
+            Note::new(F, Sharp, 0),
+            Note::new(G, Sharp, 0),
+            Note::new(A, Natural, 0),
+            Note::new(B, Natural, 0),
+            Note::new(C, Sharp, 1),
+            Note::new(D, Natural, 1),
+            Note::new(E, Natural, 1),
+            Note::new(F, Sharp, 1),
+        ]));
+
+        scale = Scale::new(
+            ScaleType::NaturalMinor,
+            Note::new(D, Flat, 1),
+        );
+        assert_eq!(scale.get_notes(), Vec::from([
+            Note::new(D, Flat, 1),
+            Note::new(E, Flat, 1),
+            Note::new(F, Flat, 1),
+            Note::new(G, Flat, 1),
+            Note::new(A, Flat, 1),
+            Note::new(B, DoubleFlat, 1),
+            Note::new(C, Flat, 2),
+            Note::new(D, Flat, 2),
         ]));
     }
 }

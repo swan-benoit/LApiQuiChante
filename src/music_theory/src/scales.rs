@@ -1,7 +1,7 @@
 pub mod scales {
     use crate::intervals::intervals::Interval;
     use crate::intervals::intervals::IntervalType::Second;
-    use crate::intervals::intervals::Quality::{Major, Minor};
+    use crate::intervals::intervals::Quality::{Augmented, Major, Minor};
     use crate::notes::notes::Note;
 
     pub struct Scale {
@@ -33,17 +33,18 @@ pub mod scales {
         pub fn get_steps(&self) -> Vec<Interval> {
             let m2 = Interval::new(Second, Minor);
             let maj2 = Interval::new(Second, Major);
+            let aug2 = Interval::new(Second, Augmented);
             match self.scale_type {
                 ScaleType::Major => Vec::from([maj2, maj2, m2, maj2, maj2, maj2, m2]),
-                ScaleType::MinorHarmonic => Vec::from([maj2, m2, maj2, maj2, m2, maj2, maj2]),
-                ScaleType::MinorMelodic => Vec::from([maj2, m2, maj2, maj2, m2, maj2, m2])
+                ScaleType::HarmonicMinor => Vec::from([maj2, m2, maj2, maj2, m2, aug2, m2]),
+                ScaleType::NaturalMinor => Vec::from([maj2, m2, maj2, maj2, m2, maj2, maj2])
             }
         }
     }
 
     pub enum ScaleType {
         Major,
-        MinorHarmonic,
-        MinorMelodic,
+        HarmonicMinor,
+        NaturalMinor,
     }
 }

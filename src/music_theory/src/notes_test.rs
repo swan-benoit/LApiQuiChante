@@ -1,9 +1,12 @@
 #[cfg(test)]
 mod notes_test {
+    use crate::intervals::intervals::Interval;
+    use crate::intervals::intervals::IntervalType::{Second, Seventh, Sixth};
+    use crate::intervals::intervals::Quality::{Augmented, Major, Minor};
     use crate::keys::keys::Key;
     use crate::keys::keys::Key::{A, B, C, D, E, F, G};
     use crate::notes::notes::{get_notes_from_score, Note};
-    use crate::notes::notes::Alteration::{DoubleSharp, Flat, Natural};
+    use crate::notes::notes::Alteration::{DoubleSharp, Flat, Natural, Sharp};
 
     #[test]
     fn get_score() {
@@ -32,4 +35,25 @@ mod notes_test {
         assert_eq!(get_notes_from_score(9).get(G).is_some(), true);
     }
 
+
+    #[test]
+    fn to_interval() {
+        let e_flat = Note::new(E, Flat, 0);
+        let f_sharp = Note::new(F, Sharp, 0);
+        let m2 = Interval::new(Second, Augmented);
+
+        assert_eq!(e_flat.to(m2).unwrap(), f_sharp);
+
+        let a = Note::new(A, Natural, 0);
+        let f = Note::new(F, Natural, 1);
+        let m6 = Interval::new(Sixth, Minor);
+
+        assert_eq!(a.to(m6).unwrap(), f);
+
+        let c_sharp = Note::new(C, Sharp, 2);
+        let b_sharp = Note::new(B, Sharp, 2);
+        let major_7 = Interval::new(Seventh, Major);
+
+        assert_eq!(c_sharp.to(major_7).unwrap(), b_sharp)
+    }
 }
