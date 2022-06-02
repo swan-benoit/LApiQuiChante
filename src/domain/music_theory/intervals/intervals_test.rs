@@ -1,6 +1,6 @@
 #[cfg(test)]
 mod intervals_tests {
-    use crate::intervals::intervals::{Interval, IntervalType, Quality};
+    use crate::domain::music_theory::intervals::intervals::intervals::{Interval, IntervalType, Quality};
 
     #[test]
     fn get_distance() {

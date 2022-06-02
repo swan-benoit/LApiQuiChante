@@ -1,5 +1,5 @@
 mod keys_test {
-    use crate::keys::keys::Key;
+    use crate::domain::music_theory::keys::keys::keys::Key;
 
     #[test]
     fn test_next() {

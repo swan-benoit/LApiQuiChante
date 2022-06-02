@@ -1,11 +1,11 @@
 #[cfg(test)]
 mod chords_test {
-    use crate::chords::chords::{Chord, ChordType};
-    use crate::chords::chords::ChordType::{Dom7, Maj, Maj7, Min, Min7};
-    use crate::keys::keys::Key;
-    use crate::keys::keys::Key::{A, B, C, D, E, F, G};
-    use crate::notes::notes::{Alteration, Note};
-    use crate::notes::notes::Alteration::{DoubleFlat, DoubleSharp, Flat, Natural, Sharp};
+    use crate::domain::music_theory::chords::chords::chords::{Chord, ChordType};
+    use crate::domain::music_theory::chords::chords::chords::ChordType::{Dom7, Maj, Maj7, Min, Min7};
+    use crate::domain::music_theory::keys::keys::keys::Key;
+    use crate::domain::music_theory::keys::keys::keys::Key::{A, B, C, D, E, F, G};
+    use crate::domain::music_theory::notes::notes::notes::{Alteration, Note};
+    use crate::domain::music_theory::notes::notes::notes::Alteration::{DoubleFlat, DoubleSharp, Flat, Natural, Sharp};
 
     #[test]
     fn test_get_maj7_notes() {

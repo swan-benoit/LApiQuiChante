@@ -1,9 +1,10 @@
 pub mod scales {
-    use crate::intervals::intervals::Interval;
-    use crate::intervals::intervals::IntervalType::{Second, Third};
-    use crate::intervals::intervals::Quality::{Augmented, Major, Minor};
-    use crate::notes::notes::Note;
+    use crate::domain::music_theory::intervals::intervals::intervals::Interval;
+    use crate::domain::music_theory::intervals::intervals::intervals::IntervalType::{Second, Third};
+    use crate::domain::music_theory::intervals::intervals::intervals::Quality::{Augmented, Major, Minor};
+    use crate::domain::music_theory::notes::notes::notes::Note;
 
+    #[derive()]
     pub struct Scale {
         pub(crate) scale_type: ScaleType,
         pub(crate) note: Note,

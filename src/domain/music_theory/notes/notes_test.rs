@@ -1,12 +1,12 @@
 #[cfg(test)]
 mod notes_test {
-    use crate::intervals::intervals::Interval;
-    use crate::intervals::intervals::IntervalType::{Second, Seventh, Sixth};
-    use crate::intervals::intervals::Quality::{Augmented, Major, Minor};
-    use crate::keys::keys::Key;
-    use crate::keys::keys::Key::{A, B, C, D, E, F, G};
-    use crate::notes::notes::{get_notes_from_score, Note};
-    use crate::notes::notes::Alteration::{DoubleSharp, Flat, Natural, Sharp};
+    use crate::domain::music_theory::intervals::intervals::intervals::Interval;
+    use crate::domain::music_theory::intervals::intervals::intervals::IntervalType::{Second, Seventh, Sixth};
+    use crate::domain::music_theory::intervals::intervals::intervals::Quality::{Augmented, Major, Minor};
+    use crate::domain::music_theory::keys::keys::keys::Key;
+    use crate::domain::music_theory::keys::keys::keys::Key::{A, B, C, D, E, F, G};
+    use crate::domain::music_theory::notes::notes::notes::{get_notes_from_score, Note};
+    use crate::domain::music_theory::notes::notes::notes::Alteration::{DoubleSharp, Flat, Natural, Sharp};
 
     #[test]
     fn get_score() {

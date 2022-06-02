@@ -1,9 +1,9 @@
 #[cfg(test)]
 mod scales_test {
-    use crate::keys::keys::Key::{A, B, C, D, E, F, G};
-    use crate::notes::notes::Alteration::{DoubleFlat, DoubleSharp, Flat, Natural, Sharp};
-    use crate::notes::notes::Note;
-    use crate::scales::scales::{Scale, ScaleType};
+    use crate::domain::music_theory::keys::keys::keys::Key::{A, B, C, D, E, F, G};
+    use crate::domain::music_theory::notes::notes::notes::Alteration::{DoubleFlat, DoubleSharp, Flat, Natural, Sharp};
+    use crate::domain::music_theory::notes::notes::notes::Note;
+    use crate::domain::music_theory::scales::scales::scales::{Scale, ScaleType};
 
     #[test]
     fn test_get_notes_for_major_scale() {

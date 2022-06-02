@@ -2,8 +2,8 @@ pub mod notes {
     use std::collections::HashSet;
     use std::hash::Hash;
 
-    use crate::intervals::intervals::Interval;
-    use crate::keys::keys::{get_key, Key};
+    use crate::domain::music_theory::intervals::intervals::intervals::Interval;
+    use crate::domain::music_theory::keys::keys::keys::{get_key, Key};
 
     #[derive(Eq, PartialEq, Hash, Debug, Copy, Clone)]
     pub struct Note {

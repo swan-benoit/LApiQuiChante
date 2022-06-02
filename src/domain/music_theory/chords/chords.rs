@@ -1,8 +1,8 @@
 pub mod chords {
-    use crate::intervals::intervals::Interval;
-    use crate::intervals::intervals::IntervalType::{Fifth, Seventh, Third};
-    use crate::intervals::intervals::Quality::{Major, Minor, Perfect};
-    use crate::notes::notes::{Alteration, Note};
+    use crate::domain::music_theory::intervals::intervals::intervals::Interval;
+    use crate::domain::music_theory::intervals::intervals::intervals::IntervalType::{Fifth, Seventh, Third};
+    use crate::domain::music_theory::intervals::intervals::intervals::Quality::{Major, Minor, Perfect};
+    use crate::domain::music_theory::notes::notes::notes::{Alteration, Note};
 
     pub struct Chord {
         pub(crate) root: Note,
